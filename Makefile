@@ -5,6 +5,9 @@ export $(cat .env | xargs -L 1)
 export REDIS_HOST=localhost
 export REDIS_PORT=6379
 
+install:
+	go mod init github.com/VSKrivoshein/FBS-test && go get ./...
+
 protos:
 	protoc -I=internal/app/api/grpc_api/proto --go-grpc_out=internal/app/api/grpc_api/proto --go_out=internal/app/api/grpc_api/proto internal/app/api/grpc_api/proto/*.proto
 
