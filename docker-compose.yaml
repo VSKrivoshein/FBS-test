@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  db:
+    image: redis:latest
+    container_name: "fibonacci-redis"
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - dev
+
+  api:
+    build: .
+    container_name: "fibonacci"
+    restart: always
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - dev
+
+networks:
+  dev:
+    driver: bridge
