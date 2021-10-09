@@ -1,7 +1,7 @@
 include .env
-export $(cat .env | xargs -L 1)
 
-#Только для локальной разработке без запуска приложения без докера
+#Только для локальной разработки без запуска приложения в докере
+export $(cat .env | xargs -L 1)
 export REDIS_HOST=localhost
 export REDIS_PORT=6379
 
